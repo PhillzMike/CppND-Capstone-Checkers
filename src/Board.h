@@ -12,11 +12,14 @@ class Board {
   Board(int size);
   void clearCell(Position position);
   void moveCell(Position from, Position to);
-  const CellState& getCellState(Position position);
-  void printBoard();
+  const CellState& getCellState(Position position) const;
+    const Cell& getCell(Position position) const;
 
   vector<vector<Cell>> _board;
-  int getSize();
+
+  int getSize() const;
+  const vector<vector<Cell>>& getBoard() const;
+
 
  private:
   int _size;
@@ -24,10 +27,10 @@ class Board {
   void addPieces();
   void fillP1Pieces();
   void fillP2Pieces();
-  void printDivider();
 
 
   void fillPiecesOnRow(int i, CellState state);
+
 };
 
 #endif //SRC_BOARD_H_

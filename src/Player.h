@@ -7,19 +7,21 @@
 
 #include "string"
 #include "Move.h"
+#include "UI/UI.h"
 
 class Player {
  public:
-  Player(std::string name);
-  virtual Move play();
+  Player(std::string name, std::shared_ptr<UI> ui);
+  virtual Move play() const;
 
-  int getScore();
+  int getScore() const;
   void setScore(int score);
 
 
  private:
   int score;
   std::string name;
+  std::shared_ptr<UI> ui_;
 
 };
 

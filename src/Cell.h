@@ -15,7 +15,7 @@ class Cell {
   void setState(CellState state);
 
   bool isKing();
-  const CellState& getState();
+  const CellState& getState() const;
 
  private:
   CellState _state;

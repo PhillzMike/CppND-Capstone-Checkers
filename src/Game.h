@@ -1,13 +1,15 @@
 #ifndef SRC_GAME_H_
 #define SRC_GAME_H_
 
+#include <memory>
 #include "Board.h"
 #include "Move.h"
 #include "Player.h"
+#include "UI/UI.h"
 
 class Game {
  public:
-  Game(Board &board, Player &firstPlayer, Player &secondPlayer);
+  Game(Board &board, std::shared_ptr<UI> ui);
 
   void start();
   bool hasGameFinished();
@@ -15,10 +17,10 @@ class Game {
 
 
  private:
-  Board board_;
+    Board &board_;
+    std::shared_ptr<UI>  ui_;
   bool firstPlayerTurn_;
-  Player firstPlayer_;
-  Player secondPlayer_;
+  bool gameIsFinished;
 
   bool validateMove(Move &move);
 

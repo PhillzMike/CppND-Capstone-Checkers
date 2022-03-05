@@ -8,7 +8,7 @@ bool Cell::isKing() {
   return _isKing;
 }
 
-const CellState& Cell::getState() {
+const CellState& Cell::getState() const{
   return _state;
 }
 
