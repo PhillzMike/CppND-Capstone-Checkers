@@ -40,25 +40,25 @@ void Board::fillPiecesOnRow(int i, CellState state) {
 }
 
 void Board::clearCell(Position position) {
-    getCell(position).setState(EMPTY);
+    getMutableCell(position).setState(EMPTY);
 }
 
 void Board::moveCell(Position from, Position to) {
     CellState state = getCell(from).getState();
     clearCell(from);
-    getCell(to).setState(state);
+    getMutableCell(to).setState(state);
 }
 
-const CellState &Board::getCellState(Position position) const {
+const CellState &Board::getCellState(Position position) const{
     return getCell(position).getState();
 }
 
-Cell &Board::getCell(Position position) {
+Cell &Board::getMutableCell(Position position) {
     return _board[position.x][position.y];
 }
 
-const Cell &Board::getCell(Position position) const {
-    return getCell(position);
+const Cell &Board::getCell(Position position) const{
+   return _board[position.x][position.y];
 }
 
 const vector<vector<Cell>> &Board::getBoard() const {

@@ -48,6 +48,14 @@ Move ConsoleUI::getMove() const{
     return move;
 }
 
+void ConsoleUI::showError(std::string error) const {
+    showMsg(error);
+}
+
+void ConsoleUI::showMsg(std::string msg) const {
+    std::cout << msg << std::endl;
+}
+
 std::string printCell(Cell &cell) {
     switch (cell.getState()) {
         case P1:

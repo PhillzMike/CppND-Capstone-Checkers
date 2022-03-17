@@ -5,9 +5,7 @@
 #include "Player.h"
 #include "UI/UI.h"
 
-Player::Player(std::string name, std::shared_ptr<UI> ui): ui_(ui) {
-    this->name = name;
-}
+Player::Player(std::string name, int id, std::shared_ptr<UI> ui): ui_(ui), name_(name), id_(id) {}
 
 Move Player::play() const{
     return ui_->getMove();
@@ -15,6 +13,10 @@ Move Player::play() const{
 
 int Player::getScore() const{
     return 0;
+}
+
+int Player::getId() const {
+    return id_;
 }
 
 void Player::setScore(int score) {

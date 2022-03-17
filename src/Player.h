@@ -11,16 +11,18 @@
 
 class Player {
  public:
-  Player(std::string name, std::shared_ptr<UI> ui);
+  Player(std::string name, int id, std::shared_ptr<UI> ui);
   virtual Move play() const;
 
   int getScore() const;
+  int getId() const;
   void setScore(int score);
 
 
  private:
   int score;
-  std::string name;
+  int id_;
+  std::string name_;
   std::shared_ptr<UI> ui_;
 
 };

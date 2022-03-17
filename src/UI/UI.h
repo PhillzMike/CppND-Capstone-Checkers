@@ -6,6 +6,7 @@
 #define HELLOWORLD_UI_H
 
 
+#include <string>
 #include "../Board.h"
 #include "../Move.h"
 
@@ -16,6 +17,8 @@ public:
 
     virtual void updateBoard() = 0;
     virtual Move getMove() const = 0 ;
+    virtual void showError(std::string error) const = 0;
+    virtual void showMsg(std::string msg) const = 0;
 
 protected:
     const Board& board_;

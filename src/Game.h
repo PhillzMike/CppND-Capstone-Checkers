@@ -8,23 +8,30 @@
 #include "UI/UI.h"
 
 class Game {
- public:
-  Game(Board &board, std::shared_ptr<UI> ui);
+public:
+    Game(Board &board, std::shared_ptr<UI> ui, std::unique_ptr<Player> firstPlayer, std::unique_ptr<Player> secondPlayer);
 
-  void start();
-  bool hasGameFinished();
-  void end();
+    void start();
+
+    bool hasGameFinished();
+
+    void end();
 
 
- private:
+private:
     Board &board_;
-    std::shared_ptr<UI>  ui_;
-  bool firstPlayerTurn_;
-  bool gameIsFinished;
+    std::shared_ptr<UI> ui_;
+    std::unique_ptr<Player> firstPlayer_;
+    std::unique_ptr<Player> secondPlayer_;
+    bool firstPlayerTurn_;
+    bool gameIsFinished;
 
-  bool validateMove(Move &move);
+    bool validateMove(int playerId, std::shared_ptr<UI> ui, Move &move);
 
 
+    Position getOpponentPieceToCapture(Move move);
+
+    void capture(Player* player, Move move);
 };
 
 #endif //SRC_GAME_H_

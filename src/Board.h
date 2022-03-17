@@ -8,28 +8,37 @@
 using std::vector;
 
 class Board {
- public:
-  Board(int size);
-  void clearCell(Position position);
-  void moveCell(Position from, Position to);
-  const CellState& getCellState(Position position) const;
+public:
+    Board(int size);
+
+    void clearCell(Position position);
+
+    void moveCell(Position from, Position to);
+
+    const CellState& getCellState(Position position) const;
+
     const Cell& getCell(Position position) const;
 
-  vector<vector<Cell>> _board;
+    vector<vector<Cell>> _board;
 
-  int getSize() const;
-  const vector<vector<Cell>>& getBoard() const;
+    int getSize() const;
 
-
- private:
-  int _size;
-  Cell& getCell(Position position);
-  void addPieces();
-  void fillP1Pieces();
-  void fillP2Pieces();
+    const vector<vector<Cell>> &getBoard() const;
 
 
-  void fillPiecesOnRow(int i, CellState state);
+private:
+    int _size;
+
+    Cell& getMutableCell(Position position);
+
+    void addPieces();
+
+    void fillP1Pieces();
+
+    void fillP2Pieces();
+
+
+    void fillPiecesOnRow(int i, CellState state);
 
 };
 

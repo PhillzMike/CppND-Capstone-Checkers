@@ -16,6 +16,9 @@ public:
     Move getMove() const;
 
     void updateBoard();
+
+    void showError(std::string error) const;
+    void showMsg(std::string msg) const;
 };
 
 
