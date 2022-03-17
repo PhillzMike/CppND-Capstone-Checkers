@@ -4,7 +4,7 @@
 #include <memory>
 #include "Board.h"
 #include "Move.h"
-#include "Player.h"
+#include "Player/Player.h"
 #include "UI/UI.h"
 
 class Game {
