@@ -49,15 +49,14 @@ vector<Position> getOneStepMoves(Board &board, Position position, int playerId) 
 }
 
 
-Position capturePosition(Board& board, Position piecePosition, Position position) {
-    int diffX = piecePosition.x - position.x;
-    int diffY = piecePosition.y - position.y;
+Position getPositionAfterCapture(Board& board, Position piecePosition, Position potentialCapturePosition) {
+    int diffX = potentialCapturePosition.x - piecePosition.x;
+    int diffY = potentialCapturePosition.y - piecePosition.y ;
 
-    int newPositionX = piecePosition.x + (2*diffX);
-    int newPositionY = piecePosition.y + (2*diffY);
+    Position destinationPosition = { piecePosition.x + (2*diffX), piecePosition.y + (2*diffY)};
 
-    if (board.isCoordinateInBoard(newPositionX) && board.isCoordinateInBoard(newPositionY) && board.getCellState(position) == EMPTY) {
-        return {newPositionX, newPositionY};
+    if (board.isCoordinateInBoard(destinationPosition.x) && board.isCoordinateInBoard(destinationPosition.y) && board.getCellState(destinationPosition) == EMPTY) {
+        return destinationPosition;
     }
     return {};
 }
@@ -69,7 +68,7 @@ vector<Move> getMovesForPiece(Board &board, Position piece, int id) {
         if(board.getCellState(position) == EMPTY) {
             moves.emplace_back(Move{piece, position});
         } else if(!isEquals(id, board.getCellState(position))){
-            Position newDestination = capturePosition(board, piece, position);
+            Position newDestination = getPositionAfterCapture(board, piece, position);
             if (newDestination.x != -1) {
                 moves.emplace_back(Move{piece, newDestination});
             }
@@ -118,7 +117,7 @@ int minmax(Board board, Move move, bool myTurn, int myId, int opponentsId, int d
                 opponentsBestScore = opponentScore;
             }
         }
-        std::cout << "My opponent move score is " << opponentsBestScore << " at depth: " << depth;
+//        std::cout << "My opponent move score is " << opponentsBestScore << " at depth: " << depth;
         return opponentsBestScore;
     }else {
         int myBestScore = INT32_MIN;
@@ -128,7 +127,7 @@ int minmax(Board board, Move move, bool myTurn, int myId, int opponentsId, int d
                 myBestScore = myScore;
             }
         }
-        std::cout << "My best move score is " << myBestScore << " at depth: " << depth;
+//        std::cout << "My best move score is " << myBestScore << " at depth: " << depth;
         return myBestScore;
     }
 
@@ -139,7 +138,7 @@ Move AI::getMove(Board board) const{
     Move bestMove = {};
     vector<Move>  moves = getPossibleMovesForId(board, getId());
     for(auto& move: moves) {
-        int score = minmax(board, move, true, getId(),_opponentsId , 4, 0);
+        int score = minmax(board, move, true, getId(),_opponentsId , 2, 0);
         if (score > maxScore) {
             maxScore = score;
             bestMove = move;

@@ -32,6 +32,8 @@ private:
     Position getOpponentPieceToCapture(Move move);
 
     void capture(BasePlayer* player, Move move);
+
+    void updateUI();
 };
 
 #endif //SRC_GAME_H_

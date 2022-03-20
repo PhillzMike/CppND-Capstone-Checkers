@@ -90,6 +90,15 @@ std::string convertMoveToString(Move& move) {
     return convertPositionToString(move.source) + "->" + convertPositionToString(move.destination);
 }
 
+void Game::updateUI() {
+    ui_->updateBoard();
+
+    std::ostringstream message;
+
+    message << "Player 1 score: " << firstPlayer_->getScore() << "\nPlayer 2 score: " << secondPlayer_->getScore();;
+    ui_->showMsg(message.str());
+}
+
 
 void Game::start() {
     firstPlayerTurn_ = true;
@@ -103,7 +112,7 @@ void Game::start() {
         ui_->showMsg(message.str());
         Move move = currentPlayer->play();
         message << "Player " << currentPlayer->getId() << " played the move " << convertMoveToString(move);
-
+        ui_->showMsg(message.str());
         if (!validateMove(currentPlayer->getId(), ui_, move)) {
             continue;
         }
@@ -115,9 +124,8 @@ void Game::start() {
             gameIsFinished = true;
         }
         board_.moveCell(move.source, move.destination);
-        ui_->updateBoard();
+        updateUI();
         firstPlayerTurn_ = !firstPlayerTurn_;
-//        gameIsFinished = true;
     }
 
 }
