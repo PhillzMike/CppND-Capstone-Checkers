@@ -6,3 +6,7 @@
 
 
 UI::UI(Board &board): board_(board) {}
+
+Board UI::getBoard() const {
+    return board_;
+}

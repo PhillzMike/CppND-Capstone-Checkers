@@ -16,8 +16,9 @@ public:
     void moveCell(Position from, Position to);
 
     const CellState& getCellState(Position position) const;
-
     const Cell& getCell(Position position) const;
+    const bool isCoordinateInBoard(int coord) const;
+
 
     vector<vector<Cell>> _board;
 

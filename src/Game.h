@@ -9,7 +9,7 @@
 
 class Game {
 public:
-    Game(Board &board, std::shared_ptr<UI> ui, std::unique_ptr<Player> firstPlayer, std::unique_ptr<Player> secondPlayer);
+    Game(Board &board, std::shared_ptr<UI> ui, std::unique_ptr<BasePlayer> firstPlayer, std::unique_ptr<BasePlayer> secondPlayer);
 
     void start();
 
@@ -21,8 +21,8 @@ public:
 private:
     Board &board_;
     std::shared_ptr<UI> ui_;
-    std::unique_ptr<Player> firstPlayer_;
-    std::unique_ptr<Player> secondPlayer_;
+    std::unique_ptr<BasePlayer> firstPlayer_;
+    std::unique_ptr<BasePlayer> secondPlayer_;
     bool firstPlayerTurn_;
     bool gameIsFinished;
 
@@ -31,7 +31,7 @@ private:
 
     Position getOpponentPieceToCapture(Move move);
 
-    void capture(Player* player, Move move);
+    void capture(BasePlayer* player, Move move);
 };
 
 #endif //SRC_GAME_H_

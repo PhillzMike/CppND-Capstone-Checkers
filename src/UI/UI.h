@@ -20,6 +20,8 @@ public:
     virtual void showError(std::string error) const = 0;
     virtual void showMsg(std::string msg) const = 0;
 
+    Board getBoard() const;
+
 protected:
     const Board& board_;
 

@@ -4,7 +4,7 @@
 
 #include "BasePlayer.h"
 
-BasePlayer::BasePlayer(std::string name, int id): name_(name), id_(id) {}
+BasePlayer::BasePlayer(std::string name, int id): name_(name), id_(id),score(0) {}
 
 int BasePlayer::getScore() const{
     return score;

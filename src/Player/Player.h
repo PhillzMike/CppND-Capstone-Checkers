@@ -14,7 +14,7 @@
 class Player: public BasePlayer {
  public:
   Player(std::string name, int id, std::shared_ptr<UI> ui);
-  virtual Move play() const;
+  Move play() const;
 
 
  private:
