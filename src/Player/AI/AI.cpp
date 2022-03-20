@@ -117,7 +117,6 @@ int minmax(Board board, Move move, bool myTurn, int myId, int opponentsId, int d
                 opponentsBestScore = opponentScore;
             }
         }
-//        std::cout << "My opponent move score is " << opponentsBestScore << " at depth: " << depth;
         return opponentsBestScore;
     }else {
         int myBestScore = INT32_MIN;
@@ -127,7 +126,6 @@ int minmax(Board board, Move move, bool myTurn, int myId, int opponentsId, int d
                 myBestScore = myScore;
             }
         }
-//        std::cout << "My best move score is " << myBestScore << " at depth: " << depth;
         return myBestScore;
     }
 

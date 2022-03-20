@@ -1,10 +1,8 @@
-# CPPND: Capstone Hello World Repo
+# CPPND: Capstone Project
 
-This is a starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213).
+### Like [Checkers](https://en.wikipedia.org/wiki/Checkers)
 
-The Capstone Project gives you a chance to integrate what you've learned throughout this program. This project will become an important part of your portfolio to share with current and future colleagues and employers.
-
-In this project, you can build your own C++ application starting with this repo, following the principles you have learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications using a wide range of C++ features.
+This is a checkers game that allows two players to play against one another or one play against a not so strong AI. 
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
@@ -24,3 +22,7 @@ In this project, you can build your own C++ application starting with this repo,
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./HelloWorld`.
+
+## How to play?
+
+This is a game that is played on the terminal, there is no gui for it, on
