@@ -5,6 +5,7 @@
 #include "AI.h"
 #include <algorithm>
 #include <iostream>
+#include <future>
 
 AI::AI(std::string name, int id, int opponentsId, std::shared_ptr<UI> ui): BasePlayer(name, id), ui_(ui), _opponentsId(opponentsId) {};
 
@@ -135,11 +136,20 @@ Move AI::getMove(Board board) const{
     int maxScore = INT32_MIN;
     Move bestMove = {};
     vector<Move>  moves = getPossibleMovesForId(board, getId());
+    vector<std::future<int>> futures;
+    int id  = getId();
+
     for(auto& move: moves) {
-        int score = minmax(board, move, true, getId(),_opponentsId , 2, 0);
+        futures.emplace_back(std::async(std::launch::async, [&] {
+           return minmax(board, move, true, id, _opponentsId, 4, 0);
+        }));
+    }
+
+    for (int i = 0; i< futures.size(); i++) {
+        int score = futures[i].get();
         if (score > maxScore) {
             maxScore = score;
-            bestMove = move;
+            bestMove = moves[i];
         }
     }
 
